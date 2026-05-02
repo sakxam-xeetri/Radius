@@ -6,19 +6,26 @@ AppNetworkManager::AppNetworkManager(DisplayManager& dispMgr) : display(dispMgr)
 }
 
 void AppNetworkManager::begin() {
+    Serial.println("[WiFi] Initializing WiFiManager...");
     display.showStatus("Connecting...", "Checking WiFi");
     
-    // AutoConnect
-    // wifiManager.setDebugOutput(false);
-    if (!wifiManager.autoConnect("Radius-Setup")) {
-        Serial.println("Failed to connect and hit timeout");
-        display.showStatus("WiFi Failed", "Restarting...");
-        delay(3000);
-        ESP.restart();
-    }
+    // wifiManager.setDebugOutput(true); // Enable this for even more detail
     
-    Serial.println("WiFi Connected!");
-    display.showStatus("WiFi Connected", WiFi.localIP().toString());
+    // Set a timeout for the config portal so it doesn't stay open forever
+    // but long enough for you to connect (3 minutes)
+    wifiManager.setConfigPortalTimeout(180);
+
+    Serial.println("[WiFi] Attempting AutoConnect...");
+    if (!wifiManager.autoConnect("Radius-Setup")) {
+        Serial.println("[WiFi] Failed to connect or hit timeout.");
+        display.showStatus("WiFi Failed", "Check Serial");
+        Serial.println("[WiFi] SYSTEM WILL NOT RESTART AUTOMATICALLY. Check your Wi-Fi credentials.");
+        Serial.flush();
+        // ESP.restart(); // Disabled for debugging
+    } else {
+        Serial.println("[WiFi] Connected successfully!");
+        display.showStatus("WiFi Connected", WiFi.localIP().toString());
+    }
 }
 
 void AppNetworkManager::loop() {
