@@ -3,9 +3,9 @@ Radius – Circuit Connection (Markdown)
 MAX98357A Pin	ESP32-S3 Pin	Description
 VIN	5V	Power supply (recommended for better audio output)
 GND	GND	Common ground
-BCLK	GPIO 26	I2S Bit Clock
-LRC (WS)	GPIO 25	I2S Word Select (Left/Right Clock)
-DIN	GPIO 22	I2S Audio Data Input
+BCLK	GPIO 17	I2S Bit Clock
+LRC (WS)	GPIO 18	I2S Word Select (Left/Right Clock)
+DIN	GPIO 16	I2S Audio Data Input
 SD	GND	Shutdown pin (LOW = enabled)
 GAIN	NC	Leave unconnected (default gain)
 2. Speaker Connection
@@ -26,9 +26,9 @@ Connected to GND	Lower gain
 Connected to VIN	Higher gain
 5. Block Diagram
 ESP32-S3
-  ├── GPIO26 → BCLK
-  ├── GPIO25 → LRC
-  ├── GPIO22 → DIN
+  ├── GPIO17 → BCLK
+  ├── GPIO18 → LRC
+  ├── GPIO16 → DIN
   ├── 5V      → VIN
   └── GND     → GND
                 ↓
