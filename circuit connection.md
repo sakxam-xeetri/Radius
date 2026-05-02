@@ -8,6 +8,13 @@ LRC (WS)	GPIO 18	I2S Word Select (Left/Right Clock)
 DIN	GPIO 16	I2S Audio Data Input
 SD	GND	Shutdown pin (LOW = enabled)
 GAIN	NC	Leave unconnected (default gain)
+
+2. ESP32-S3 ↔ 16x2 I2C LCD Display
+LCD Pin	ESP32-S3 Pin	Description
+VCC	5V	Power supply
+GND	GND	Common ground
+SDA	GPIO 8	I2C Data
+SCL	GPIO 9	I2C Clock
 2. Speaker Connection
 MAX98357A Pin	Connection
 SPK+	Speaker +
@@ -26,10 +33,12 @@ Connected to GND	Lower gain
 Connected to VIN	Higher gain
 5. Block Diagram
 ESP32-S3
-  ├── GPIO17 → BCLK
-  ├── GPIO18 → LRC
-  ├── GPIO16 → DIN
-  ├── 5V      → VIN
+  ├── GPIO17 → BCLK (MAX98357A)
+  ├── GPIO18 → LRC (MAX98357A)
+  ├── GPIO16 → DIN (MAX98357A)
+  ├── GPIO8  → SDA (LCD Display)
+  ├── GPIO9  → SCL (LCD Display)
+  ├── 5V      → VIN / VCC
   └── GND     → GND
                 ↓
            MAX98357A
