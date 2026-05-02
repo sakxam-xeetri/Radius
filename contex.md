@@ -65,7 +65,7 @@ Capacitor (1000µF for stability)
 
 
 6. Circuit Connections
-ComponentConnectionVIN (MAX98357A)5VGNDGNDBCLKGPIO 26LRC (WS)GPIO 25DINGPIO 22SDGNDSpeakerSPK+ / SPK−
+ComponentConnectionVIN (MAX98357A)5VGNDGNDBCLKGPIO 17LRC (WS)GPIO 18DINGPIO 16SDGNDSpeakerSPK+ / SPK−
 
 7. Software Requirements
 
